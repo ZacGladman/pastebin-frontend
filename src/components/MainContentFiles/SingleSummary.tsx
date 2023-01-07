@@ -1,9 +1,10 @@
-import axios from "axios";
+import axios, { formToJSON } from "axios";
 import { useState } from "react";
 import { baseUrl } from "../../utils/envBaseURL";
 import {
   InputComment,
   inputEvent,
+  ISingleComment,
   ISingleSummary,
 } from "../../utils/interfaces";
 
@@ -98,6 +99,7 @@ export default function SingleSummary({
               e.preventDefault();
               setInputComment({ username: "", comment: "" });
             }}
+            name="commentForm"
           >
             <input
               type="text"
@@ -119,10 +121,11 @@ export default function SingleSummary({
             />
             <input type="submit" />
           </form>
-          <ul className="commentsList">
-            {fetchedComments &&
-              fetchedComments.map((comment) => {
-                return (
+          <table className="commentsList">
+            <tbody>
+              {fetchedComments &&
+                fetchedComments.map((comment) => {
+                  return (
                     <tr key={comment.comment_id}>
                       <td>{comment.username}:</td>
                       <td>{comment.comment}</td>
@@ -135,9 +138,10 @@ export default function SingleSummary({
                         </button>
                       </td>
                     </tr>
-                );
-              })}
-          </ul>
+                  );
+                })}
+            </tbody>
+          </table>
         </div>
       )}
     </>
