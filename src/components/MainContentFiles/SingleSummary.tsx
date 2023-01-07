@@ -34,7 +34,9 @@ export default function SingleSummary({
   };
   const handleSubmitComment = async () => {
     await axios.post(baseUrl + `/pastes/${paste.id}/comments`, inputComment);
-    fetchComments();
+  const handleDeleteComment = async (comment: ISingleComment) => {
+    await axios.delete(baseUrl + `/pastes/comments/${comment.comment_id}`);
+    await fetchComments();
   };
 
   return (
@@ -117,9 +119,18 @@ export default function SingleSummary({
             {fetchedComments &&
               fetchedComments.map((comment) => {
                 return (
-                  <li key={comment.comment_id}>
-                    {comment.username}: {comment.comment}
-                  </li>
+                    <tr key={comment.comment_id}>
+                      <td>{comment.username}:</td>
+                      <td>{comment.comment}</td>
+                      <td>
+                        <button
+                          className="deleteCommentButton"
+                          onClick={() => handleDeleteComment(comment)}
+                        >
+                          🗑️
+                        </button>
+                      </td>
+                    </tr>
                 );
               })}
           </ul>
