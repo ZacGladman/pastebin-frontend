@@ -51,16 +51,12 @@ export default function MainContent({
   }, [singleSummaryIndex]);
 
   const handleSubmitPaste = async () => {
-    if (pasteInput.body.length > 0) {
-      await axios.post(baseUrl + "/pastes", pasteInput);
-      fetchPastes();
-      setPasteInput({
-        title: "",
-        body: "",
-      });
-    } else {
-      window.alert("Body must not be empty");
-    }
+    await axios.post(baseUrl + "/pastes", pasteInput);
+    fetchPastes();
+    setPasteInput({
+      title: "",
+      body: "",
+    });
   };
 
   useEffect(() => {

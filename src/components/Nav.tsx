@@ -26,7 +26,7 @@ export default function Nav({
         className={
           navSelection === "homepage" && !singleSummaryIndex
             ? "active"
-            : "homepage"
+            : "inactive"
         }
         onClick={() => {
           setNavSelection("homepage");
@@ -39,7 +39,7 @@ export default function Nav({
         className={
           navSelection === "summary" && !singleSummaryIndex
             ? "active"
-            : "summary"
+            : "inactive"
         }
         onClick={() => {
           setNavSelection("summary");

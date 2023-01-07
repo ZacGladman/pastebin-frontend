@@ -14,20 +14,26 @@ export default function Homepage({
             handleSubmitPaste();
             e.preventDefault();
           }}
+          className="pasteForm"
         >
           <input
+            className="pasteInputTitle"
             type="text"
             placeholder="Title (optional)"
             value={pasteInput.title}
             name="title"
             onChange={(e) => setPasteInput(e)}
-          />
+          />{" "}
+          <br></br>
           <textarea
+            className="pasteInputBody"
             name="pasteSummary"
             value={pasteInput.body}
             onChange={(e) => setPasteInput(e)}
+            required
           ></textarea>
-          <input type="submit" />
+          <br></br>
+          <input type="submit" className="pasteInputSubmitBtn" />
         </form>
       </div>
     </>

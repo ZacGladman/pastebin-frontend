@@ -4,6 +4,7 @@ import { baseUrl } from "../../utils/envBaseURL";
 import {
   InputComment,
   inputEvent,
+  ISingleComment,
   ISingleSummary,
 } from "../../utils/interfaces";
 
@@ -34,7 +35,12 @@ export default function SingleSummary({
   };
   const handleSubmitComment = async () => {
     await axios.post(baseUrl + `/pastes/${paste.id}/comments`, inputComment);
-    fetchComments();
+    await fetchComments();
+  };
+
+  const handleDeleteComment = async (comment: ISingleComment) => {
+    await axios.delete(baseUrl + `/pastes/comments/${comment.comment_id}`);
+    await fetchComments();
   };
 
   return (
@@ -91,7 +97,9 @@ export default function SingleSummary({
             onSubmit={(e) => {
               handleSubmitComment();
               e.preventDefault();
+              setInputComment({ username: "", comment: "" });
             }}
+            name="commentForm"
           >
             <input
               type="text"
@@ -113,16 +121,27 @@ export default function SingleSummary({
             />
             <input type="submit" />
           </form>
-          <ul className="commentsList">
-            {fetchedComments &&
-              fetchedComments.map((comment) => {
-                return (
-                  <li key={comment.comment_id}>
-                    {comment.username}: {comment.comment}
-                  </li>
-                );
-              })}
-          </ul>
+          <table className="commentsList">
+            <tbody>
+              {fetchedComments &&
+                fetchedComments.map((comment) => {
+                  return (
+                    <tr key={comment.comment_id}>
+                      <td>{comment.username}:</td>
+                      <td>{comment.comment}</td>
+                      <td>
+                        <button
+                          className="deleteCommentButton"
+                          onClick={() => handleDeleteComment(comment)}
+                        >
+                          🗑️
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
         </div>
       )}
     </>
