@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from "react";
 import { baseUrl } from "../utils/envBaseURL";
 import {
   IPasteInput,
-  IFetchedPaste,
   inputEvent,
   IMainContent,
   ISingleComment,
@@ -37,11 +36,11 @@ export default function MainContent({
     });
   };
 
-  const fetchPastes = async () => {
+  const fetchPastes = useCallback(async () => {
     const response = await axios.get(baseUrl + "/pastes");
     console.log(response);
     setFetchedPastes(response.data);
-  };
+  }, [setFetchedPastes]);
 
   const fetchComments = useCallback(async () => {
     const response = await axios.get(
@@ -66,7 +65,7 @@ export default function MainContent({
 
   useEffect(() => {
     fetchPastes();
-  }, []);
+  }, [fetchPastes]);
 
   useEffect(() => {
     if (singleSummaryIndex !== undefined) {
