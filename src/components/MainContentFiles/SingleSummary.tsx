@@ -39,16 +39,6 @@ export default function SingleSummary({
 
   return (
     <>
-      {singleSummaryIndex && (
-        <button
-          onClick={(e) => {
-            setSingleSummaryIndex(undefined);
-            e.stopPropagation();
-          }}
-        >
-          return to pastes summary
-        </button>
-      )}
       <div
         className={
           isActive === false && singleSummaryIndex === undefined
