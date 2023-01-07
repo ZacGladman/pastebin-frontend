@@ -13,6 +13,9 @@ export default function SummaryList({
 
   return (
     <div className="summaryListContainer">
+      <p className="usageInstructions">
+        {">"} click on a paste to see its comments {"<"}
+      </p>
       {fetchedPastes.map((paste) => {
         return (
           <SingleSummary

@@ -46,6 +46,10 @@ nav button {
   color: brown;
 }
 
+.usageInstructions {
+  text-align: center;
+}
+
 .defaultView {
   border: 2px solid rgb(189, 189, 189);
   padding-left: 200px;
