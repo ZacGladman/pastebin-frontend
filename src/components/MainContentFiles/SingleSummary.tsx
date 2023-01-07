@@ -34,6 +34,9 @@ export default function SingleSummary({
   };
   const handleSubmitComment = async () => {
     await axios.post(baseUrl + `/pastes/${paste.id}/comments`, inputComment);
+    await fetchComments();
+  };
+
   const handleDeleteComment = async (comment: ISingleComment) => {
     await axios.delete(baseUrl + `/pastes/comments/${comment.comment_id}`);
     await fetchComments();
