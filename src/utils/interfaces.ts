@@ -25,6 +25,12 @@ export type inputEvent =
 
 export interface IMainContent {
   navSelection: string;
+  singleSummaryIndex: number | undefined;
+  setSingleSummaryIndex: React.Dispatch<
+    React.SetStateAction<number | undefined>
+  >;
+  fetchedPastes: IFetchedPaste[];
+  setFetchedPastes: React.Dispatch<React.SetStateAction<IFetchedPaste[]>>;
 }
 export interface ISummaryList {
   fetchedPastes: IFetchedPaste[];

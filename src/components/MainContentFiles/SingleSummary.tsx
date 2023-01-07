@@ -110,6 +110,7 @@ export default function SingleSummary({
               value={inputComment.username}
               name="username"
               onChange={(e) => handleCommentChange(e)}
+              className="commentUsernameInput"
             />
             <input
               type="text"
@@ -118,6 +119,7 @@ export default function SingleSummary({
               value={inputComment.comment}
               name="comment"
               onChange={(e) => handleCommentChange(e)}
+              className="commentBodyInput"
             />
             <input type="submit" />
           </form>

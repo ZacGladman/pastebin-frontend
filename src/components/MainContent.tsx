@@ -14,15 +14,16 @@ import SummaryList from "./MainContentFiles/SummaryList";
 
 export default function MainContent({
   navSelection,
+  fetchedPastes,
+  setFetchedPastes,
+  singleSummaryIndex,
+  setSingleSummaryIndex,
 }: IMainContent): JSX.Element {
   const [pasteInput, setPasteInput] = useState<IPasteInput>({
     title: "",
     body: "",
   });
-  const [fetchedPastes, setFetchedPastes] = useState<IFetchedPaste[]>([]);
-  const [singleSummaryIndex, setSingleSummaryIndex] = useState<
-    number | undefined
-  >();
+
   const [activeIndex, SetActiveIndex] = useState<number>();
   const [fetchedComments, setFetchedComments] = useState<ISingleComment[]>([]);
 
