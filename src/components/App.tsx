@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Nav from "./Nav";
-import Footer from "./Footer";
 import MainContent from "./MainContent";
 import "./App.css";
 import { IFetchedPaste } from "../utils/interfaces";
@@ -30,7 +29,6 @@ function App(): JSX.Element {
         fetchedPastes={fetchedPastes}
         setFetchedPastes={setFetchedPastes}
       />
-      <Footer />
     </>
   );
 }
