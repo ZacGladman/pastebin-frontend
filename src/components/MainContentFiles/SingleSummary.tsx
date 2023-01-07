@@ -36,7 +36,13 @@ export default function SingleSummary({
   return (
     <>
       <div
-        className={isActive ? "fullView" : "defaultView"}
+        className={
+          isActive === false && singleSummaryIndex === undefined
+            ? "defaultView"
+            : isActive === false && singleSummaryIndex !== undefined
+            ? "singleSummaryDefaultView"
+            : "fullView"
+        }
         onClick={() => setSingleSummaryIndex(paste.id)}
       >
         {singleSummaryIndex && (
