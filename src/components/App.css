@@ -2,6 +2,11 @@ body {
   font-family: "Montserrat";
 }
 
+.navBar {
+  padding-left: 10%;
+  padding-bottom: 2%;
+}
+
 nav button {
   background-color: white;
   border: none;
@@ -39,7 +44,7 @@ nav button {
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
-  height: 30em;
+  height: fit-content;
   line-height: 1.5em;
   width: 60vw;
 }

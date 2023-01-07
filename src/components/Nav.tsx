@@ -9,7 +9,7 @@ export default function Nav({
   navSelection,
 }: INav): JSX.Element {
   return (
-    <nav>
+    <nav className="navBar">
       <button
         className={navSelection === "homepage" ? "active" : "homepage"}
         onClick={() => setNavSelection("homepage")}
