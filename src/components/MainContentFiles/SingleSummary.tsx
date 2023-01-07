@@ -16,8 +16,12 @@ export default function SingleSummary({
   fetchedComments,
   fetchComments,
 }: ISingleSummary): JSX.Element {
-  const shortenedBody =
-    paste.body.length > 640 ? paste.body.slice(0, 639) : undefined;
+  const summaryListShortenedBody =
+    paste.body.length > 680 ? paste.body.slice(0, 639) : undefined;
+  const singleSummaryShortenedBody =
+    singleSummaryIndex && paste.body.length > 1710
+      ? paste.body.slice(0, 1710)
+      : undefined;
   const [inputComment, setInputComment] = useState<InputComment>({
     username: "",
     comment: "",
@@ -35,6 +39,16 @@ export default function SingleSummary({
 
   return (
     <>
+      {singleSummaryIndex && (
+        <button
+          onClick={(e) => {
+            setSingleSummaryIndex(undefined);
+            e.stopPropagation();
+          }}
+        >
+          return to pastes summary
+        </button>
+      )}
       <div
         className={
           isActive === false && singleSummaryIndex === undefined
@@ -45,16 +59,6 @@ export default function SingleSummary({
         }
         onClick={() => setSingleSummaryIndex(paste.id)}
       >
-        {singleSummaryIndex && (
-          <button
-            onClick={(e) => {
-              setSingleSummaryIndex(undefined);
-              e.stopPropagation();
-            }}
-          >
-            return to pastes summary
-          </button>
-        )}
         <h3 className="pasteTitle">{paste.title}</h3>
         <div className="pasteBody">
           {isActive ? (
@@ -71,8 +75,12 @@ export default function SingleSummary({
             </p>
           ) : (
             <p>
-              {shortenedBody ?? paste.body}
-              {shortenedBody && (
+              {singleSummaryShortenedBody
+                ? singleSummaryShortenedBody
+                : summaryListShortenedBody
+                ? summaryListShortenedBody
+                : paste.body}
+              {(summaryListShortenedBody || singleSummaryShortenedBody) && (
                 <button
                   onClick={(e) => {
                     setActiveIndex(paste.id);
