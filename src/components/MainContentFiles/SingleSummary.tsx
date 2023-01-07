@@ -93,6 +93,7 @@ export default function SingleSummary({
             onSubmit={(e) => {
               handleSubmitComment();
               e.preventDefault();
+              setInputComment({ username: "", comment: "" });
             }}
           >
             <input
