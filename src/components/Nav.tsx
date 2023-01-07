@@ -16,6 +16,10 @@ export default function Nav({
   fetchedPastes,
   setSingleSummaryIndex,
 }: INav): JSX.Element {
+  const selectedPaste = fetchedPastes.filter(
+    (paste) => paste.id === singleSummaryIndex
+  )[0];
+
   return (
     <nav className="navBar">
       <button
@@ -45,7 +49,9 @@ export default function Nav({
         pastes summary
       </button>
       {singleSummaryIndex && (
-        <button className="active">paste index: {singleSummaryIndex}</button>
+        <button className="active">
+          {selectedPaste.title ? selectedPaste.title : "untitled paste"}
+        </button>
       )}
     </nav>
   );
