@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from "react";
 import { baseUrl } from "../utils/envBaseURL";
 import {
   IPasteInput,
-  IFetchedPaste,
   inputEvent,
   IMainContent,
   ISingleComment,
@@ -14,15 +13,16 @@ import SummaryList from "./MainContentFiles/SummaryList";
 
 export default function MainContent({
   navSelection,
+  fetchedPastes,
+  setFetchedPastes,
+  singleSummaryIndex,
+  setSingleSummaryIndex,
 }: IMainContent): JSX.Element {
   const [pasteInput, setPasteInput] = useState<IPasteInput>({
     title: "",
     body: "",
   });
-  const [fetchedPastes, setFetchedPastes] = useState<IFetchedPaste[]>([]);
-  const [singleSummaryIndex, setSingleSummaryIndex] = useState<
-    number | undefined
-  >();
+
   const [activeIndex, SetActiveIndex] = useState<number>();
   const [fetchedComments, setFetchedComments] = useState<ISingleComment[]>([]);
 
@@ -36,11 +36,11 @@ export default function MainContent({
     });
   };
 
-  const fetchPastes = async () => {
+  const fetchPastes = useCallback(async () => {
     const response = await axios.get(baseUrl + "/pastes");
     console.log(response);
     setFetchedPastes(response.data);
-  };
+  }, [setFetchedPastes]);
 
   const fetchComments = useCallback(async () => {
     const response = await axios.get(
@@ -65,7 +65,7 @@ export default function MainContent({
 
   useEffect(() => {
     fetchPastes();
-  }, []);
+  }, [fetchPastes]);
 
   useEffect(() => {
     if (singleSummaryIndex !== undefined) {

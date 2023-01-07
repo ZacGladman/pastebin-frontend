@@ -2,6 +2,11 @@ body {
   font-family: "Montserrat";
 }
 
+.navBar {
+  padding-left: 10%;
+  padding-bottom: 2%;
+}
+
 nav button {
   background-color: white;
   border: none;
@@ -39,7 +44,7 @@ nav button {
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;
-  height: 30em;
+  height: fit-content;
   line-height: 1.5em;
   width: 60vw;
 }
@@ -79,4 +84,23 @@ nav button {
 
 .pasteTitle {
   font-size: 18px;
+}
+
+.commentSection {
+  padding-left: 5.8rem;
+  padding-bottom: 1rem;
+}
+
+.commentSection input {
+  height: 2rem;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+
+.commentBodyInput {
+  width: 120ch;
+}
+
+.commentUsernameInput {
+  text-transform: capitalize;
 }
