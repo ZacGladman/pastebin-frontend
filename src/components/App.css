@@ -85,3 +85,22 @@ nav button {
 .pasteTitle {
   font-size: 18px;
 }
+
+.commentSection {
+  padding-left: 5.8rem;
+  padding-bottom: 1rem;
+}
+
+.commentSection input {
+  height: 2rem;
+  font-size: 1rem;
+  padding-left: 0.5rem;
+}
+
+.commentBodyInput {
+  width: 120ch;
+}
+
+.commentUsernameInput {
+  text-transform: capitalize;
+}
